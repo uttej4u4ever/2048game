@@ -1,0 +1,90 @@
+<html>
+    <head>
+        <title>2048</title>
+
+        <style>
+            body {
+                font-family: sans-serif;
+            }
+
+            #table {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+            }
+
+            #over {
+                font-size: xxx-large;
+                position: absolute;
+                text-align: center;
+                color: red;
+                font-weight: bold;
+                display: none;
+            }
+
+            #button-holder {
+                align-items: cent;
+            }
+
+            .row {
+                display: flex;
+            }
+
+            .cell {
+                height: 75px;
+                width: 75px;
+
+                margin: 1px;
+
+                border: 1px black solid;
+
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 50px;
+            }
+
+            .cell:not(:empty) {
+                background-color: lightgray;
+            }
+
+        </style>
+
+    </head>
+    <body>
+        <div>
+            <div id="button-holder">
+                <button onclick="init()">Reset</button>
+            </div>
+            <div id="game-holder">
+                <div id="game"></div>
+            </div>
+        </div>
+        <script src="main.js"></script>
+
+        <script>
+            var gr;
+            
+            function init() {
+                gr = new Grid(4, document.getElementById("game"));
+                gr.popIn();
+            }
+
+            init();
+
+            document.onkeydown = (ev) => {
+                let dir = {
+                    "ArrowUp": "up",
+                    "ArrowDown": "down",
+                    "ArrowLeft": "left",
+                    "ArrowRight": "right"
+                }[ev.key];
+
+                if (dir) {
+                    gr.move(dir);
+                }
+            }
+        </script>
+    </body>
+</html>
